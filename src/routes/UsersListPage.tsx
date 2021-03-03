@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'dva';
 import { Button, Table } from 'antd';
+import UserModal from '../components/UserModal';
+import Ex from '../components/Example';
 
 const dataSource = [
     {
@@ -35,13 +38,17 @@ const dataSource = [
   ];
 
 const UserListPage = () => {
+    const [ userInfoModalVisible, setUserInfoModalVisible] = useState(false);
     return(
         <div>
             <h1>Users Dashboard</h1>
             <Button type='primary' onClick={() => alert('Success')}>Antd Button</Button>
-            <Table dataSource={dataSource} columns={columns} />;
+            <Table dataSource={dataSource} columns={columns} />
+            <UserModal visible={userInfoModalVisible} />
+            <Ex />
+            <Ex />
 
         </div>
     )
 };
-export default UserListPage;
+export default connect()(UserListPage);
